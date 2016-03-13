@@ -160,6 +160,10 @@ public:
         glUseProgram(program);
     }
 
+	void unUse() {
+		glUseProgram(0);
+	}
+
 private:
     GLuint program;
 };

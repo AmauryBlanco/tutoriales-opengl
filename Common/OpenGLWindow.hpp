@@ -18,6 +18,8 @@ public:
 	{ }
 
 	bool init(string title, int width = 1024, int height = 720, bool full_screen = false) {
+		aspect_ratio = static_cast<float>(width) / static_cast<float>(height);
+
 		glfwSetErrorCallback(error_callback);
 
 		if (!glfwInit()) return false;
