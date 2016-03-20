@@ -1,0 +1,12 @@
+#version 330 core
+
+in vec2 texCoord;
+out vec4 color;
+
+uniform sampler2D myTexture;
+uniform sampler2D secondTexture;
+
+void main()
+{
+	color = mix(texture(myTexture, texCoord), texture(secondTexture, texCoord), 0.4);
+}
