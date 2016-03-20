@@ -10,6 +10,9 @@ public:
 
 private:
 	void onstart() override {
+
+		glEnable(GL_DEPTH_TEST);
+
 		// crear, compilar y enlasar el Vertex y Fragment Shader
 		GLuint program = shader_simple.compile("shaders/simple.vertex_shader", "shaders/simple.fragment_shader");
 
@@ -91,14 +94,15 @@ private:
 	}
 
 	void onrender(double time) override {
-		glClear(GL_COLOR_BUFFER_BIT);
-		glEnable(GL_CULL_FACE);
+
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// Usar el shader
 		shader_simple.use();
 		
 		// Matriz de modelo, se aplica una rotacion sobre el eje Y 
-		glm::mat4 Model = glm::rotate(glm::mat4(1.0f), (float)time, glm::vec3(0.0f, 1.0f, 0.0f));
+		glm::mat4 Model;
+		Model = glm::rotate(Model, (float)time, glm::vec3(0.0f, 1.0f, 0.0f));
 
 		// Matriz de proyeccion y visualizacion
 		glm::mat4 Projection = glm::perspective(45.0f, aspect_ratio, 0.1f, 100.0f);
