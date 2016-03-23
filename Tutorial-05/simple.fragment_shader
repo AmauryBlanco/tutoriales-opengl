@@ -1,0 +1,11 @@
+#version 330 core
+
+in vec2 uv_cube;
+out vec4 color;
+
+uniform sampler2D cubeTexture;
+
+void main()
+{
+	color = texture(cubeTexture, uv_cube);
+}
