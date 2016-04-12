@@ -1,0 +1,34 @@
+#version 330 core
+
+out vec4 color;
+
+in vec3 N1;
+in vec3 L1;
+in vec3 V1;
+
+uniform vec3 light_color = vec3(0.75, 0.75, 0.75);
+uniform vec3 ambient_color = vec3(0.1);
+
+uniform float ka = 0.10;
+uniform float kd = 0.55;
+uniform float ks = 0.80;
+uniform float n = 32;
+
+void main()
+{
+	// Normalize the incoming N, L, and V vectors
+	vec3 N = normalize(N1);
+	vec3 L = normalize(L1);
+	vec3 V = normalize(V1);
+		// Calculate R by reflecting -L around the plane defined by N
+	vec3 R = reflect(-L, N);
+	
+    // Calculate ambient, difusse, specular contribution
+	vec3 ambient  = ka * ambient_color;
+	vec3 diffuse  = kd * light_color * max(0.0, dot(N, L));
+	vec3 specular = ks * light_color * pow(max(0.0, dot(R, V)), n);
+
+	// Send the color output to the fragment shader
+	vec3 f_color = ambient + diffuse + specular;
+	color = vec4(f_color, 1.0);
+} 
