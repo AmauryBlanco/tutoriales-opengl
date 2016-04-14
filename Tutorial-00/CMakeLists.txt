@@ -1,3 +1,3 @@
-add_executable( Tutorial-00 ventana-opengl.cpp ../common/openglwindow.hpp)
+add_executable( 00-Ventana ventana-opengl.cpp ../common/openglwindow.hpp)
 
-target_link_libraries( Tutorial-00 ${GRAPHIC_LIBS} )
+target_link_libraries( 00-Ventana ${GRAPHIC_LIBS} )
