@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -112,7 +113,7 @@ protected:
 	virtual void onrender(double time) = 0;
 	
 	virtual void onresize(int width, int height) {
-		aspect_ratio = width / (float)height;
+		aspect_ratio = max(0.0f, width / (float)height);
 		glViewport(0, 0, width, height);
 	};
 
