@@ -38,6 +38,7 @@ public:
 		glfwSetKeyCallback(window, key_callback);
 		glfwSetWindowCloseCallback(window, close_callback);
 		glfwSetFramebufferSizeCallback(window, resize_callback);
+        glfwSetCursorPosCallback(window, mouse_callback);
 
 		if (glewInit() != GLEW_OK) {
 			glfwTerminate();
@@ -74,6 +75,10 @@ public:
         cout << endl;
 	}
 
+    GLFWwindow* getGLFWwindow() {
+        return window;
+    }
+
 private:
 
 	static void error_callback(int error, const char* description)
@@ -99,6 +104,12 @@ private:
 		win_app->onresize(width, height);
 	}
 
+    static void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+    {
+        OpenGLWindow* win_app = getOpenGLWinApp(window);
+        win_app->onmouse(xpos, ypos);
+    }
+
 	inline static OpenGLWindow* getOpenGLWinApp(GLFWwindow* window) {
 		return static_cast<OpenGLWindow*>(glfwGetWindowUserPointer(window));
 	}
@@ -111,6 +122,8 @@ protected:
 	virtual void onkey(int key, int scancode, int action, int mods) { };
 
 	virtual void onrender(double time) = 0;
+
+    virtual void onmouse(double xpos, double ypos) { };
 	
 	virtual void onresize(int width, int height) {
 		aspect_ratio = max(0.0f, width / (float)height);
