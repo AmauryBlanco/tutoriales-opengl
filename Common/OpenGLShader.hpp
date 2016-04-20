@@ -19,6 +19,10 @@ public:
         glDeleteProgram(program);
     }
 
+    GLuint getUniformLocation(std::string name) {
+        return glGetUniformLocation(program, name.c_str());
+    }
+
     bool loadFile(std::string filename, std::string& outcode)
     {
         std::ifstream file(filename, std::ios::in);
