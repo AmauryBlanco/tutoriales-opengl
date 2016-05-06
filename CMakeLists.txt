@@ -14,17 +14,12 @@ include_directories(${GLEW_INCLUDE_DIRS})
 include_directories(${GLM_INCLUDE_DIRS})
 
 include_directories(Common)
+include_directories(Includes)
 
 set(GRAPHIC_LIBS ${OPENGL_gl_LIBRARY} ${GLEW_LIBRARIES} ${GLFW3_LIBRARY})
 
-add_subdirectory(Tutorial-00)
-add_subdirectory(Tutorial-01)
-add_subdirectory(Tutorial-02)
-add_subdirectory(Tutorial-03)
-add_subdirectory(Tutorial-04)
-add_subdirectory(Tutorial-05)
-add_subdirectory(Tutorial-06)
-add_subdirectory(Tutorial-07)
-add_subdirectory(Tutorial-08)
-add_subdirectory(Tutorial-09)
-add_subdirectory(Tutorial-10)
+file(GLOB tutoriales LIST_DIRECTORIES true Tutorial-[0-9]*)
+
+foreach(tutorial ${tutoriales})
+	add_subdirectory(${tutorial})
+endforeach(tutorial)

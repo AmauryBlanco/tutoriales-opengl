@@ -168,6 +168,10 @@ public:
 		glUseProgram(0);
 	}
 
+    GLuint getProgram() {
+        return program;
+    }
+
 private:
     GLuint program;
 };
