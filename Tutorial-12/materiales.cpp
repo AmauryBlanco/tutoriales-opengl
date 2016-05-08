@@ -1,7 +1,8 @@
 #include "OpenGLWindow.hpp"
 #include "OpenGLShader.hpp"
 #include "OpenGLCamera.hpp"
-#include "OpenGLModel.hpp"
+
+#include "ModelMesh.cpp"
 
 #include <glm\gtc\matrix_inverse.hpp>
 #include <glm\gtc\matrix_transform.hpp>
@@ -21,15 +22,7 @@ private:
         glClearColor(0.0f, 0.5f, 0.5f, 1.0f);
 
         camera.setWindow(this->window);
-
         dir_shader.compile("shaders/directional.vertex_shader", "shaders/directional.fragment_shader");
-
-        //model.init("model/mario_bros/mario_obj.obj");
-        //model.init("model/scene.assbin");
-        //model.init("model/deadpool/dead 123456.obj");
-        //model.init("model/car/avent.obj");
-        //model.init("model/nanosuit/nanosuit.obj");
-        //model.init("model/cyborg/cyborg.fbx");
         model.init("model/test.assbin");
 
         // ocultar el cursor y ubicarlo en el centro de la ventana
@@ -38,9 +31,7 @@ private:
     }
 
     void onrender(double time) override {
-
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
         luzDirectional(dir_shader, time);
     }
 
@@ -48,8 +39,7 @@ private:
         shader.use();
 
         glm::mat4 Model;
-        //Model = glm::scale(Model, glm::vec3(0.05f));
-
+ 
         glm::mat4 MV  = camera.getViewMatrix() * Model;
         glm::mat4 MVP = camera.getProjectionMatrix() * MV;
         glm::mat3 N   = glm::inverseTranspose(glm::mat3(MV));

@@ -11,11 +11,11 @@ link_directories(${ASSIMP_LIBRARY_DIRS})
 include_directories(${ASSIMP_INCLUDE_DIRS})
 
 add_executable( ${PROJECT_NAME}     materiales.cpp 
+									modelmesh.cpp
 									shaders/directional.vertex_shader
 									shaders/directional.fragment_shader
 									../common/openglwindow.hpp 
 									../common/openglshader.hpp
-									../common/openglcamera.hpp
-									../common/openglmodel.hpp )
+									../common/openglcamera.hpp )
 							
 target_link_libraries( ${PROJECT_NAME} ${GRAPHIC_LIBS} ${ASSIMP_LIBRARIES})
