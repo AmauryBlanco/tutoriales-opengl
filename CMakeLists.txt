@@ -7,7 +7,6 @@ SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/Modules/" ${CMAKE_MODULE_PATH})
 find_package(OpenGL REQUIRED)
 find_package(GLFW3  REQUIRED)
 find_package(GLEW   REQUIRED)
-find_package(GLM    REQUIRED)
 
 include_directories(${GLFW3_INCLUDE_DIRS})
 include_directories(${GLEW_INCLUDE_DIRS})
