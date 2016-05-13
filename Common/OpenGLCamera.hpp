@@ -77,7 +77,11 @@ public:
         int width, height;
         glfwGetWindowSize(window, &width, &height);
 
-        return glm::perspective(45.0f, static_cast<float>(width) / static_cast<float>(height), 0.1f, 100.0f);
+        return glm::perspective(45.0f, static_cast<float>(width) / static_cast<float>(height), 0.1f, 1000.0f);
+    }
+
+    glm::vec3 getPosition() {
+        return cameraPos;
     }
 };
 
