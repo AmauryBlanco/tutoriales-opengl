@@ -1,7 +1,7 @@
 project(13-Assimp_Texturas)
 
 file(COPY directional.vertex_shader directional.fragment_shader DESTINATION shaders)
-file(COPY cyborg DESTINATION model)
+file(COPY ../Data/cyborg DESTINATION model)
 
 set(ASSIMP_DIR $ENV{ASSIMP_DIR} CACHE PATH "Assimp Directory")
 
